@@ -1,0 +1,51 @@
+# @package _global_
+
+defaults:
+  - data: base
+  - model: dtw_baseline
+  - _self_
+
+# Experiment configuration
+experiment:
+  name: "query_by_humming"
+  version: "1.0.0"
+  tags: ["mir", "query_by_humming", "dtw"]
+
+# Training configuration
+train:
+  batch_size: 32
+  learning_rate: 0.001
+  num_epochs: 100
+  early_stopping_patience: 10
+  gradient_clip_val: 1.0
+  
+# Evaluation configuration
+eval:
+  metrics: ["map_at_k", "recall_at_k", "dtw_distance"]
+  k_values: [1, 5, 10]
+  num_workers: 4
+  
+# Logging configuration
+logging:
+  level: "INFO"
+  log_dir: "logs"
+  use_wandb: false
+  use_tensorboard: true
+  
+# Device configuration
+device: "auto"  # auto, cuda, mps, cpu
+
+# Random seed for reproducibility
+seed: 42
+
+# Paths
+paths:
+  data_dir: "data"
+  checkpoint_dir: "checkpoints"
+  output_dir: "assets"
+  
+# Privacy settings
+privacy:
+  anonymize_filenames: true
+  log_audio_paths: false
+  max_audio_length: 30.0  # seconds

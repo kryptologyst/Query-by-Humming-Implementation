@@ -1,0 +1,28 @@
+# @package model
+
+# Model type
+type: "dtw_baseline"
+
+# DTW configuration
+dtw:
+  distance_metric: "euclidean"  # euclidean, cosine, manhattan
+  window_size: 10
+  step_pattern: "symmetric2"  # symmetric1, symmetric2, asymmetric
+  
+# Feature extraction
+features:
+  type: "mfcc"
+  n_mfcc: 13
+  delta: true
+  delta_delta: true
+  
+# Preprocessing
+preprocessing:
+  normalize: true
+  z_score: true
+  
+# Matching
+matching:
+  top_k: 10
+  threshold: 0.5
+  normalize_distances: true

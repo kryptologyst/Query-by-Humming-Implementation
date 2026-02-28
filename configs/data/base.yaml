@@ -1,0 +1,47 @@
+# @package data
+
+# Dataset configuration
+dataset:
+  name: "humming_dataset"
+  version: "1.0"
+  
+# Audio processing
+audio:
+  sample_rate: 16000
+  max_length: 30.0  # seconds
+  min_length: 2.0   # seconds
+  normalize: true
+  pre_emphasis: 0.97
+  
+# Feature extraction
+features:
+  type: "mfcc"  # mfcc, chroma, spectral, learned
+  n_mfcc: 13
+  n_fft: 2048
+  hop_length: 512
+  n_mels: 128
+  fmin: 0
+  fmax: 8000
+  
+# Data augmentation
+augmentation:
+  enabled: true
+  speed_perturb: [0.9, 1.1]
+  pitch_shift: [-2, 2]  # semitones
+  noise_factor: 0.01
+  time_mask: 0.1
+  freq_mask: 0.1
+  
+# Data splits
+splits:
+  train: 0.7
+  val: 0.15
+  test: 0.15
+  random_seed: 42
+  
+# Data loading
+loader:
+  batch_size: 32
+  num_workers: 4
+  shuffle: true
+  pin_memory: true
